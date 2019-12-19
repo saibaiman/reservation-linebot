@@ -39,22 +39,28 @@ foreach ($client->parseEvents() as $event) {
                     ]);
                     break;
                 case 'location':
-                    //$data = $event['location'];
                     $lat = $message['latitude'];
                     $lng = $message['longitude'];
-                    $hotUrl = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=e8a77202e4c8db72&lat=' . $lat . '&lng=' . $lng . '&range=5&order=4';
+                    $hotUrl = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=e8a77202e4c8db72&lat=' . $lat . '&lng=' . $lng . '&range=5&order=4&format=json';
 
                     $ch = curl_init();
                     curl_setopt($ch, CURLOPT_URL, $hotUrl);
                     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                     $result = curl_exec($ch);
                     curl_close($ch);
+                    $result = json_decord($result, true);
+                    $shopInfo0 = $data['results']['shop']['0']['name'] . $data['results']['shop']['0']['urls']['pc'];
+                    $shopInfo1 = $data['results']['shop']['1']['name'] . $data['results']['shop']['1']['urls']['pc'];
+                    $shopInfo2 = $data['results']['shop']['2']['name'] . $data['results']['shop']['2']['urls']['pc'];
+                    $shopInfo3 = $data['results']['shop']['3']['name'] . $data['results']['shop']['3']['urls']['pc'];
+                    $shopInfo4 = $data['results']['shop']['4']['name'] . $data['results']['shop']['4']['urls']['pc'];
+ 
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],
                         'messages' => [
                              [
                                 'type' => 'text',
-                                'text' => $result
+                                'text' => $shopInfo0
                              ]
                          ]
                      ]);
