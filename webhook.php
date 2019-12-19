@@ -42,7 +42,7 @@ foreach ($client->parseEvents() as $event) {
                     //$data = $event['location'];
                     $lat = $message['latitude'];
                     $lng = $message['longitude'];
-                    $hotUrl = 'https://webservise.recruit.co.jp/hotpepper/gourmet/v1/?key=e8a77202e4c8db72&lat=' . $lat . '&lng=' . $lng . '&range=5&order=4';
+                    $hotUrl = 'http://webservise.recruit.co.jp/hotpepper/gourmet/v1/?key=e8a77202e4c8db72&lat=' . $lat . '&lng=' . $lng . '&range=5&order=4';
 
                     $ch = curl_init();
                     curl_setopt($ch, CURLOPT_URL, $hotUrl);
@@ -54,7 +54,7 @@ foreach ($client->parseEvents() as $event) {
                         'messages' => [
                              [
                                 'type' => 'text',
-                                'text' => $hotUrl
+                                'text' => $result
                              ]
                          ]
                      ]);
