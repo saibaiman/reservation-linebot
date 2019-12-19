@@ -54,7 +54,7 @@ foreach ($client->parseEvents() as $event) {
                         'messages' => [
                              [
                                 'type' => 'text',
-                                'text' => substr($result, 3, 10)
+                                'text' => $hotUrl
                              ]
                          ]
                      ]);
