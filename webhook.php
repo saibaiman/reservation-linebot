@@ -49,7 +49,7 @@ foreach ($client->parseEvents() as $event) {
                     $result = curl_exec($ch);
                     curl_close($ch);
                     $data = json_decode($result, true);
-                    $shopInfo0 = $data['results']['shop']['0']['name'] . '\n' . 'URL:' . $data['results']['shop']['0']['urls']['pc'];
+                    $shopInfo0 = $data['results']['shop']['0']['name'] . "\n" . 'URL:' . $data['results']['shop']['0']['urls']['pc'];
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],
                         'messages' => [
