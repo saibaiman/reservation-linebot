@@ -49,18 +49,13 @@ foreach ($client->parseEvents() as $event) {
                     $result = curl_exec($ch);
                     curl_close($ch);
                     $data = json_decode($result, true);
-                    $shopInfo0 = $data['results']['shop']['0']['name'] . $data['results']['shop']['0']['urls']['pc'];
-                    $shopInfo1 = $data['results']['shop']['1']['name'] . $data['results']['shop']['1']['urls']['pc'];
-                    $shopInfo2 = $data['results']['shop']['2']['name'] . $data['results']['shop']['2']['urls']['pc'];
-                    $shopInfo3 = $data['results']['shop']['3']['name'] . $data['results']['shop']['3']['urls']['pc'];
-                    $shopInfo4 = $data['results']['shop']['4']['name'] . $data['results']['shop']['4']['urls']['pc'];
- 
+                    $shopInfo0 = $data['results']['shop']['0']['name'] . '\n' . 'URL:' . $data['results']['shop']['0']['urls']['pc'];
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],
                         'messages' => [
                              [
                                 'type' => 'text',
-                                'text' => $shopInfo0,$shopInfo1
+                                'text' => $shopInfo0
                              ]
                          ]
                      ]);
