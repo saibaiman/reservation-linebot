@@ -80,7 +80,6 @@ foreach ($client->parseEvents() as $event) {
                                 ]
                             ]
                         ]);
-                        break;
                	    } else {
                     	$client->replyMessage([
                         	'replyToken' => $event['replyToken'],
@@ -92,6 +91,7 @@ foreach ($client->parseEvents() as $event) {
 				]
 			]);	
 		   }
+                    break;
 		default:
                     error_log('Unsupported message type: ' . $message['type']);
                     break;
