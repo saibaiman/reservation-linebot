@@ -50,12 +50,32 @@ foreach ($client->parseEvents() as $event) {
                     curl_close($ch);
                     $data = json_decode($result, true);
                     $shopInfo0 = $data['results']['shop']['0']['name'] . "\n" . 'URL:' . $data['results']['shop']['0']['urls']['pc'];
+                    $shopInfo1 = $data['results']['shop']['1']['name'] . "\n" . 'URL:' . $data['results']['shop']['1']['urls']['pc'];
+                    $shopInfo2 = $data['results']['shop']['2']['name'] . "\n" . 'URL:' . $data['results']['shop']['2']['urls']['pc'];
+                    $shopInfo3 = $data['results']['shop']['3']['name'] . "\n" . 'URL:' . $data['results']['shop']['3']['urls']['pc'];
+                    $shopInfo4 = $data['results']['shop']['4']['name'] . "\n" . 'URL:' . $data['results']['shop']['4']['urls']['pc'];
                     $client->replyMessage([
                         'replyToken' => $event['replyToken'],
                         'messages' => [
                              [
                                 'type' => 'text',
                                 'text' => $shopInfo0
+                             ],
+                             [
+                                'type' => 'text',
+                                'text' => $shopInfo1
+                             ],
+                             [
+                                'type' => 'text',
+                                'text' => $shopInfo2
+                             ],
+                             [
+                                'type' => 'text',
+                                'text' => $shopInfo3
+                             ],
+                             [
+                                'type' => 'text',
+                                'text' => $shopInfo4
                              ]
                          ]
                      ]);
