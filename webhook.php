@@ -49,7 +49,7 @@ foreach ($client->parseEvents() as $event) {
                     $result = curl_exec($ch);
                     curl_close($ch);
                     $data = json_decode($result, true);
-                    if (!empty($data['results'])) {
+                    if (!empty($data['results']['shop'])) {
 		    	$shopInfo0 = $data['results']['shop']['0']['name'] . "\n" . 'URL:' . $data['results']['shop']['0']['urls']['pc'];
                     	$shopInfo1 = $data['results']['shop']['1']['name'] . "\n" . 'URL:' . $data['results']['shop']['1']['urls']['pc'];
                     	$shopInfo2 = $data['results']['shop']['2']['name'] . "\n" . 'URL:' . $data['results']['shop']['2']['urls']['pc'];
