@@ -102,6 +102,7 @@ foreach ($client->parseEvents() as $event) {
 						]
 					]);	
 					break;
+			}
 		default:
 			error_log('Unsupported event type: ' . $event['type']);
 			break;
