@@ -26,19 +26,55 @@ foreach ($client->parseEvents() as $event) {
 	switch ($event['type']) {
 		case 'message':
 			$message = $event['message'];
+			//$type = $message['type'];
 			switch ($message['type']) {
-				case 'text':
-					$client->replyMessage([
-						'replyToken' => $event['replyToken'],
-						'messages' => [
-							[
-							'type' => 'text',
-							'text' => $message['text']
+				case 'postback':
+					if ($message['type']['data'] == "電話") {
+						$client->replyMessage([
+							'replyToken' => $event['replyToken'],
+							'messages' => [
+								[
+								'type' => 'text',
+								'text' => '07021550888' 
+								]
 							]
-						]
-					]);
+						])
+					} else {
+						$client->replyMessage([
+							'replyToken' => $event['replyToken'],
+							'messages' => [
+								[
+								'type' => 'text',
+								'text' => $message['text']
+								]
+							]
+						])
+					};
 					break;
-				case 'location':
+			/*		case 'text':
+					if ($message['text'] == "電話") {
+						$client->replyMessage([
+							'replyToken' => $event['replyToken'],
+							'messages' => [
+								[
+								'type' => 'text',
+								'text' => '07021550888' 
+								]
+							]
+						])
+					} else {
+						$client->replyMessage([
+							'replyToken' => $event['replyToken'],
+							'messages' => [
+								[
+								'type' => 'text',
+								'text' => $message['text']
+								]
+							]
+						])
+					};
+					break;
+			*/	case 'location':
 					$lat = $message['latitude'];
 					$lng = $message['longitude'];
 					$hotUrl = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=e8a77202e4c8db72&lat=' . $lat . '&lng=' . $lng . '&range=5&order=4&format=json';
