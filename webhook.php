@@ -28,16 +28,49 @@ foreach ($client->parseEvents() as $event) {
 		case 'message':
 			$message = $event['message'];
 			switch ($message['type']) {
-				case 'text':
+				case 'postback'
 					$client->replyMessage([
 						'replyToken' => $event['replyToken'],
 						'messages' => [
 							[
 							'type' => 'text',
-							'text' => $message['text']
+							'text' => '07021550888'
 							]
-						]
+						]	
 					]);
+					break;
+				case 'text':
+					if ($message['text'] == '電話') {
+						$client->replyMessage([
+							'replyToken' => $event['replyToken'],
+							'messages' => [
+								[
+								'type' => 'text',
+								'text' => '07021550888'
+								]
+							]
+						]);
+					} elseif ($message['text'] == 'アクセス') {
+						$client->replyMessage([
+							'replyToken' => $event['replyToken'],
+							'messages' => [
+								[
+								'type' => 'text',
+								'text' => '07021550888'
+								]
+							]
+						]);
+					} elseif ($message['text'] == '予約') {
+						$client->replyMessage([
+							'replyToken' => $event['replyToken'],
+							'messages' => [
+								[
+								'type' => 'text',
+								'text' => '07021550888'
+								]
+							]
+						]);
+					}
 					break;	
 				case 'location':
 					$lat = $message['latitude'];
