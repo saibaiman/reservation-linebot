@@ -34,7 +34,7 @@ foreach ($client->parseEvents() as $event) {
 						'messages' => [
 							[
 							'type' => 'text',
-							'text' => '07021550888'
+							'text' =>$message['text'], 
 							]
 						]	
 					]);
@@ -56,7 +56,7 @@ foreach ($client->parseEvents() as $event) {
 							'messages' => [
 								[
 								'type' => 'text',
-								'text' => '07021550888'
+								'text' => 'さがみ野だよ'
 								]
 							]
 						]);
