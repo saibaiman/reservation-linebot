@@ -28,7 +28,7 @@ foreach ($client->parseEvents() as $event) {
 		case 'message':
 			$message = $event['message'];
 			switch ($message['type']) {
-				case 'postback'
+				case 'text'
 					$client->replyMessage([
 						'replyToken' => $event['replyToken'],
 						'messages' => [
@@ -39,7 +39,7 @@ foreach ($client->parseEvents() as $event) {
 						]	
 					]);
 					break;
-				case 'text':
+				case 'postback':
 					if ($message['text'] == '電話') {
 						$client->replyMessage([
 							'replyToken' => $event['replyToken'],
