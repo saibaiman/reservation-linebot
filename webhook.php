@@ -29,17 +29,6 @@ foreach ($client->parseEvents() as $event) {
 			$message = $event['message'];
 			switch ($message['type']) {
 				case 'text':
-					$client->replyMessage([
-						'replyToken' => $event['replyToken'],
-						'messages' => [
-							[
-							'type' => 'text',
-							'text' =>$message['text'], 
-							]
-						]	
-					]);
-					break;
-			/*	case 'postback':
 					if ($message['text'] == '電話') {
 						$client->replyMessage([
 							'replyToken' => $event['replyToken'],
@@ -70,9 +59,19 @@ foreach ($client->parseEvents() as $event) {
 								]
 							]
 						]);
+					} else {
+						$client->replyMessage([
+							'replyToken' => $event['replyToken'],
+							'messages' => [
+								[
+								'type' => 'text',
+								'text' =>$message['text'], 
+								]
+							]	
+						]);
 					}
-					break;	
-		*/		case 'location':
+					break;
+				case 'location':
 					$lat = $message['latitude'];
 					$lng = $message['longitude'];
 					$hotUrl = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=e8a77202e4c8db72&lat=' . $lat . '&lng=' . $lng . '&range=5&order=4&format=json';
