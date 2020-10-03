@@ -61,14 +61,15 @@ foreach ($client->parseEvents() as $event) {
 										"text" => "予約しますか?",
 										"actions" => [
 											[	
-											"type" => "message",
+											"type" => "datetimepicker",
 											"label" => "日時選択へ",
-											"text" => "yes"
+											"date" => "datetemp"
+											"mode" => "date"
 											],
 											[	
-											"type" => "message",
+											"type" => "postback",
 											"label" => "いいえ",
-											"text" => "no"
+											"text" => "action=back"
 											]	
 										]
 									]
