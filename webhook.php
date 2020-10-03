@@ -130,28 +130,28 @@ foreach ($client->parseEvents() as $event) {
 						'template' => [
 							'type' => 'buttons',
 							'text' => '人数を選択してください',
-							'actions' => [ 
-								[	
+							'actions' => array(
+								array(	
 								'type' => 'postback',
 								'label' => '２人',
 								'data' => 'numberOfPeople=2',
-								],
-								]	
+								),
+								array(	
 								'type' => 'postback',
 								'label' => '３人',
 								'data' => 'numberOfPeople=3',
-								],
-								[	
+								),
+								array(	
 								'type' => 'postback',
 								'label' => '４人',
 								'data' => 'numberOfPeople=4',
-								],
-								[
+								),
+								array(	
 								'type' => 'postback',
 								'label' => '５人以上',
 								'data' => 'numberOfPeople=5',
-								]
-							]	
+								),
+							),
 						]
 					]	
 				]);
