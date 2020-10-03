@@ -71,12 +71,7 @@ foreach ($client->parseEvents() as $event) {
 										}
 									]
 								}
-
-							/*	[
-								'type' => 'text',
-								'text' => '07021550888'
-								]
-					*/		]
+							]
 						]);
 					} else {
 						$client->replyMessage([
