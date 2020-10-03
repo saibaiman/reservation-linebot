@@ -86,7 +86,7 @@ foreach ($client->parseEvents() as $event) {
 							]
 						]);
 					} else {
-						$time = Carbon::now('Asia/Tokyo')->format('m-d'. "t". 'H:i');
+						$time = Carbon::date('Asia/Tokyo')->format('m-d');
 						$client->replyMessage([
 							'replyToken' => $event['replyToken'],
 							'messages' => [
