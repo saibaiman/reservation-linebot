@@ -67,7 +67,7 @@ foreach ($client->parseEvents() as $event) {
 								"altText" => "予約されますか？",
 									"template" => [ 
 										"type" => "confirm",
-										"text" => "予約しますか?",
+										"text" => "予約しますか? (1か月先までご予約できます。)",
 										"actions" => [
 											[	
 											"type" => "datetimepicker",
