@@ -67,9 +67,9 @@ foreach ($client->parseEvents() as $event) {
 											"mode" => "date"
 											],
 											[	
-											"type" => "postback",
+											"type" => "text",
 											"label" => "いいえ",
-											"data" => "action=back"
+											"text" => "いいえ"
 											]	
 										]
 									]
@@ -87,7 +87,6 @@ foreach ($client->parseEvents() as $event) {
 							]	
 						]);
 					}
-			error_log('Unsupported event type: ' . $event['type']);
 					break;
 				case 'location':
 					$lat = $message['latitude'];
