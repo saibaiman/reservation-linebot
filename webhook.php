@@ -74,7 +74,7 @@ foreach ($client->parseEvents() as $event) {
 */
 								[
 								"type": "text",
-								"text": "予約で大丈夫ですか？",
+								"text": $response,
 								]
 							]
 						]);
