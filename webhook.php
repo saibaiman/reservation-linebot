@@ -123,38 +123,37 @@ foreach ($client->parseEvents() as $event) {
 			if ($postback == 'datestring') {
 				$client->replyMessage([
 					'replyToken' => $event['replyToken'],
-					'messages' => [
+					'messages' => { 
 						[
 						'type' => 'template',
 						'altText' => '人数選択',
-							'template' => [
-								'type' => 'buttons',
-								'text' => '人数を選択してください',
-								'actions' => [ 
-									[	
-									'type' => 'postback',
-									'label' => '２人',
-									'data' => 'numberOfPeople=2',
-									],
-									]	
-									'type' => 'postback',
-									'label' => '３人',
-									'data' => 'numberOfPeople=3',
-									],
-									[	
-									'type' => 'postback',
-									'label' => '４人',
-									'data' => 'numberOfPeople=4',
-									],
-									[
-									'type' => 'postback',
-									'label' => '５人以上',
-									'data' => 'numberOfPeople=5',
-									]
+						'template' => {
+							'type' => 'buttons',
+							'text' => '人数を選択してください',
+							'actions' => [ 
+								[	
+								'type' => 'postback',
+								'label' => '２人',
+								'data' => 'numberOfPeople=2',
+								],
+								]	
+								'type' => 'postback',
+								'label' => '３人',
+								'data' => 'numberOfPeople=3',
+								],
+								[	
+								'type' => 'postback',
+								'label' => '４人',
+								'data' => 'numberOfPeople=4',
+								],
+								[
+								'type' => 'postback',
+								'label' => '５人以上',
+								'data' => 'numberOfPeople=5',
 								]
-							]
+							}
 						]
-					]
+					}
 				]);
 			} elseif ($postback == 'action=back') {
 				$client->replyMessage([
