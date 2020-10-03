@@ -53,26 +53,21 @@ foreach ($client->parseEvents() as $event) {
 						$client->replyMessage([
 							'replyToken' => $event['replyToken'],
 							'messages' => [
-/*								[
-								"type" => "text",
-								"text" => "予約で大丈夫ですか？",
-								]
-*/						
 								[
 								"type" => "template",
 								"altText" => "this is a confirm template",
 									"template" => [ 
 										"type" => "confirm",
-										"text" => "Are you sure?",
+										"text" => "予約しますか?",
 										"actions" => [
 											[	
 											"type" => "message",
-											"label" => "Yes",
+											"label" => "日時選択へ",
 											"text" => "yes"
 											],
 											[	
 											"type" => "message",
-											"label" => "No",
+											"label" => "いいえ",
 											"text" => "no"
 											]	
 										]
