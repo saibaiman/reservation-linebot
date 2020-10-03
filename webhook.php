@@ -85,7 +85,7 @@ foreach ($client->parseEvents() as $event) {
 							'messages' => [
 								[
 								'type' => 'text',
-								'text' => error_log(print_f($event, true)), 
+								'text' => error_log(print_r($event, true)), 
 								]
 							]	
 						]);
@@ -118,16 +118,16 @@ foreach ($client->parseEvents() as $event) {
 					break;
 			}
 
-		/*case 'postback':
+		case 'postback':
 			$postback = $event['postback']['data'];
 			if ($postback == 'datestring') {
 				$client->replyMessage([
 					'replyToken' => $event['replyToken'],
-					'messages' => { 
+					'messages' => [ 
 						[
 						'type' => 'template',
 						'altText' => '人数選択',
-						'template' => {
+						'template' => [
 							'type' => 'buttons',
 							'text' => '人数を選択してください',
 							'actions' => [ 
@@ -151,9 +151,9 @@ foreach ($client->parseEvents() as $event) {
 								'label' => '５人以上',
 								'data' => 'numberOfPeople=5',
 								]
-							}
+							]	
 						]
-					}
+					]	
 				]);
 			} elseif ($postback == 'action=back') {
 				$client->replyMessage([
@@ -167,7 +167,7 @@ foreach ($client->parseEvents() as $event) {
 				]);
 			}
 			break;
-*/		default:
+		default:
 			error_log('Unsupported event type: ' . $event['type']);
 			break;
 	}
