@@ -44,11 +44,14 @@ foreach ($client->parseEvents() as $event) {
 							'replyToken' => $event['replyToken'],
 							'messages' => [
 								[
-								'type' => 'text',
-								'text' => 'さがみ野だよ'
+								'type' => 'location',
+								'title' => 'ポエム',
+								'address' => '神奈川県海老名市東柏ケ谷２丁目２４−３０',
+								'latitude' => 35.471467,
+								'longitude' => 139.426090,
 								]
 							]
-						]);
+						);
 					} elseif ($message['text'] == '予約') {
 						$client->replyMessage([
 							'replyToken' => $event['replyToken'],
@@ -89,9 +92,18 @@ foreach ($client->parseEvents() as $event) {
 					}
 					break;
 				case 'location':
-
-
-
+					$client->replyMessage([
+						'replyToken' => $event['replyToken'],
+						'messages' => [
+							[
+							'type' => 'location',
+							'title' => 'ポエム',
+							'address' => '神奈川県海老名市東柏ケ谷２丁目２４−３０',
+							'latitude' => 35.471467,
+							'longitude' => 139.426090,
+							]
+						]
+					);
 					break;
 				default:
 					$client->replyMessage([
