@@ -85,7 +85,7 @@ foreach ($client->parseEvents() as $event) {
 							'messages' => [
 								[
 								'type' => 'text',
-								'text' =>$message['text'], 
+								'text' =>$event, 
 								]
 							]	
 						]);
@@ -118,7 +118,7 @@ foreach ($client->parseEvents() as $event) {
 					break;
 			}
 
-		case 'postback':
+		/*case 'postback':
 			$postback = $event['postback']['data'];
 			if ($postback == 'datestring') {
 				$client->replyMessage([
@@ -167,7 +167,7 @@ foreach ($client->parseEvents() as $event) {
 				]);
 			}
 			break;
-		default:
+*/		default:
 			error_log('Unsupported event type: ' . $event['type']);
 			break;
 	}
