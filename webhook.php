@@ -57,7 +57,7 @@ foreach ($client->parseEvents() as $event) {
 							]
 						]);
 					} elseif ($message['text'] == '予約') {
-						$time = Carbon::now('Asia/Tokyo')->format('Y-m-d\TH:i:s');
+						$time = Carbon::now('Asia/Tokyo')->format('Y-m-d\TH:i');
 						$client->replyMessage([
 							'replyToken' => $event['replyToken'],
 							'messages' => [
