@@ -73,6 +73,7 @@ foreach ($client->parseEvents() as $event) {
 											"label" => "日時選択へ",
 											"data" => "datestring",
 											"initial" => $time, 
+											"min" => $time, 
 											"mode" => "datetime",
 											],
 											[	
