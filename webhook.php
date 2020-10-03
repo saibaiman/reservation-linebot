@@ -17,6 +17,10 @@
  */
 
 require_once('./LINEBotTiny.php');
+require_once('./vendor/autoload.php');
+
+use Carbon\Carbon;
+
 
 $channelAccessToken = 'hy0mK6UwxH+2ooPGZpUr9mGknMfgOcRYZPwL7B5b5AMQGWVVdluOSsjveDfPlsu8riTNl45G0mJcpngdQ+oldHdqyVLSa15qR6H0naE+l5q7yf3ETynO7bV0PqmvZzcvg0fJEn5D/UFnkSo/QHv+rQdB04t89/1O/w1cDnyilFU=';
 $channelSecret = 'c5f2a1532069465224d1183ac4256997';
@@ -53,6 +57,7 @@ foreach ($client->parseEvents() as $event) {
 							]
 						]);
 					} elseif ($message['text'] == '予約') {
+						$time = Carbon::now()->format('m-dtH:i');
 						$client->replyMessage([
 							'replyToken' => $event['replyToken'],
 							'messages' => [
@@ -67,6 +72,7 @@ foreach ($client->parseEvents() as $event) {
 											"type" => "datetimepicker",
 											"label" => "日時選択へ",
 											"data" => "datestring",
+											"initial" => Carbon::now(),
 											"mode" => "datetime",
 											],
 											[	
@@ -80,12 +86,13 @@ foreach ($client->parseEvents() as $event) {
 							]
 						]);
 					} else {
+						$time = Carbon::now()->format('m-dtH:i');
 						$client->replyMessage([
 							'replyToken' => $event['replyToken'],
 							'messages' => [
 								[
 								'type' => 'text',
-								'text' => print_r($event), 
+								'text' => $time, 
 								]
 							]	
 						]);
