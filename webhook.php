@@ -58,6 +58,7 @@ foreach ($client->parseEvents() as $event) {
 						]);
 					} elseif ($message['text'] == '予約') {
 						$time = Carbon::now('Asia/Tokyo')->format('Y-m-d\TH:i');
+						$timeAddOneMonth = Carbon::now('Asia/Tokyo')->addMonth()->format('Y-m-d\TH:i');
 						$client->replyMessage([
 							'replyToken' => $event['replyToken'],
 							'messages' => [
@@ -73,6 +74,7 @@ foreach ($client->parseEvents() as $event) {
 											"label" => "日時選択へ",
 											"data" => "datestring",
 											"initial" => $time, 
+											"max" => $timeAddOneMonth, 
 											"min" => $time, 
 											"mode" => "datetime",
 											],
