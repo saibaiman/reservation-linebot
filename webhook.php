@@ -35,7 +35,7 @@ foreach ($client->parseEvents() as $event) {
 							'messages' => [
 								[
 								'type' => 'text',
-								'text' => '046-231-7422'
+								'text' => 'お店の電話番号は046-231-7422になります。'
 								]
 							]
 						]);
