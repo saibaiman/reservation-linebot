@@ -63,13 +63,13 @@ foreach ($client->parseEvents() as $event) {
 											[	
 											"type" => "datetimepicker",
 											"label" => "日時選択へ",
-											"date" => "datetemp"
+											"data" => "datetemp"
 											"mode" => "date"
 											],
 											[	
 											"type" => "postback",
 											"label" => "いいえ",
-											"text" => "action=back"
+											"data" => "action=back"
 											]	
 										]
 									]
