@@ -39,7 +39,7 @@ foreach ($client->parseEvents() as $event) {
 							'messages' => [
 								[
 								'type' => 'text',
-								'text' => 'お店の電話番号は046-231-7422になります。'
+								'text' => 'ポエム \n お店の電話番号は046-231-7422になります。'
 								]
 							]
 						]);
@@ -67,7 +67,7 @@ foreach ($client->parseEvents() as $event) {
 								"altText" => "予約されますか？",
 									"template" => [ 
 										"type" => "confirm",
-										"text" => "予約しますか? (1か月先までご予約できます。)",
+										"text" => "予約しますか? \n (1か月先までご予約できます。)",
 										"actions" => [
 											[	
 											"type" => "datetimepicker",
