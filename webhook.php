@@ -57,7 +57,7 @@ foreach ($client->parseEvents() as $event) {
 							]
 						]);
 					} elseif ($message['text'] == '予約') {
-						$time = Carbon::now()->format('m-dtH:i');
+						$time = Carbon::now('Asia/Tokyo')->format('Y-m-d\TH:i:s');
 						$client->replyMessage([
 							'replyToken' => $event['replyToken'],
 							'messages' => [
@@ -72,7 +72,7 @@ foreach ($client->parseEvents() as $event) {
 											"type" => "datetimepicker",
 											"label" => "日時選択へ",
 											"data" => "datestring",
-											"initial" => Carbon::now(),
+											"initial" => $time, 
 											"mode" => "datetime",
 											],
 											[	
