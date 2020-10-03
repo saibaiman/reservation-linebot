@@ -85,7 +85,7 @@ foreach ($client->parseEvents() as $event) {
 							'messages' => [
 								[
 								'type' => 'text',
-								'text' => error_log(print_r($event, true)), 
+								'text' => print_r($event), 
 								]
 							]	
 						]);
