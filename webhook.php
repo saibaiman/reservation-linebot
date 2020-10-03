@@ -46,7 +46,7 @@ foreach ($client->parseEvents() as $event) {
 								[
 								'type' => 'location',
 								'title' => 'ポエム',
-								'address' => '神奈川県海老名市東柏ケ谷２丁目２４−３０',
+								'address' => '〒243-0401 神奈川県海老名市東柏ケ谷２丁目２４−３０',
 								'latitude' => 35.471467,
 								'longitude' => 139.426090,
 								]
