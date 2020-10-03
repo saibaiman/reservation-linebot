@@ -51,7 +51,7 @@ foreach ($client->parseEvents() as $event) {
 								'longitude' => 139.426090,
 								]
 							]
-						);
+						]);
 					} elseif ($message['text'] == '予約') {
 						$client->replyMessage([
 							'replyToken' => $event['replyToken'],
@@ -103,7 +103,7 @@ foreach ($client->parseEvents() as $event) {
 							'longitude' => 139.426090,
 							]
 						]
-					);
+					]);
 					break;
 				default:
 					$client->replyMessage([
