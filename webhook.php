@@ -144,6 +144,7 @@ foreach ($client->parseEvents() as $event) {
 									'type' => 'postback',
 									'label' => '１人',
 									'data' => 'numberOfPeople=1&date=' . $datetime,
+									),
 									array(	
 									'type' => 'postback',
 									'label' => '２人',
