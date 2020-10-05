@@ -136,13 +136,17 @@ foreach ($client->parseEvents() as $event) {
 
 		case 'postback':
 			$postback = $event['postback']['data'];
-			//$datetime = $event['postback']['params']['datetime'];
+			$datetime = $event['postback']['params']['datetime'];
 			if ($postback == 'datestring') {
 				$client->replyMessage([
 					'replyToken' => $event['replyToken'],
 					'messages' => [ 
 						[
-						'type' => 'template',
+						'type' => 'text',
+						'text' => '位置情報かメッセージしか対応していません。'
+						]
+
+/*						'type' => 'template',
 						'altText' => '人数選択',
 							'template' => [
 								'type' => 'buttons',
@@ -170,7 +174,7 @@ foreach ($client->parseEvents() as $event) {
 									),
 								),
 							]
-						]
+						]*/
 					]	
 				]);
 			} elseif ($postback == 'action=back') {
