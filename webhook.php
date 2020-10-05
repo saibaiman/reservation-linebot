@@ -21,13 +21,6 @@ require_once('./vendor/autoload.php');
 
 use Carbon\Carbon;
 
-/*try {
-    $dbh = new PDO('mysql:host=localhost; dbname=procir_nagai127;charset=utf8;', 'nagai127', '2c7vcx1u47');
-} catch (PDOException $e) {
-    echo '接続失敗:';
-    exit;
-}
-*/
 $channelAccessToken = 'hy0mK6UwxH+2ooPGZpUr9mGknMfgOcRYZPwL7B5b5AMQGWVVdluOSsjveDfPlsu8riTNl45G0mJcpngdQ+oldHdqyVLSa15qR6H0naE+l5q7yf3ETynO7bV0PqmvZzcvg0fJEn5D/UFnkSo/QHv+rQdB04t89/1O/w1cDnyilFU=';
 $channelSecret = 'c5f2a1532069465224d1183ac4256997';
 $postback = null;
@@ -142,11 +135,7 @@ foreach ($client->parseEvents() as $event) {
 					'replyToken' => $event['replyToken'],
 					'messages' => [ 
 						[
-						'type' => 'text',
-						'text' => $datetime 
-						]
-
-/*						'type' => 'template',
+						'type' => 'template',
 						'altText' => '人数選択',
 							'template' => [
 								'type' => 'buttons',
@@ -154,27 +143,31 @@ foreach ($client->parseEvents() as $event) {
 								'actions' => array(
 									array(	
 									'type' => 'postback',
+									'label' => '１人',
+									'data' => 'numberOfPeople=1' . '&date=' . $datetime,
+									array(	
+									'type' => 'postback',
 									'label' => '２人',
-									'data' => 'numberOfPeople=2',
+									'data' => 'numberOfPeople=2' . '&date=' . $datetime,
 									),
 									array(	
 									'type' => 'postback',
 									'label' => '３人',
-									'data' => 'numberOfPeople=3',
+									'data' => 'numberOfPeople=3' . '&date=' . $datetime,
 									),
 									array(	
 									'type' => 'postback',
 									'label' => '４人',
-									'data' => 'numberOfPeople=4',
+									'data' => 'numberOfPeople=4' . '&date=' . $datetime,
 									),
 									array(	
 									'type' => 'postback',
 									'label' => '５人以上',
-									'data' => 'numberOfPeople=5',
+									'data' => 'numberOfPeople=5' . '&date=' . $datetime,
 									),
 								),
 							]
-						]*/
+						]
 					]	
 				]);
 			} elseif ($postback == 'action=back') {
@@ -187,6 +180,52 @@ foreach ($client->parseEvents() as $event) {
 						]
 					]
 				]);
+			} else {
+				try {
+				    $dbh = new PDO('mysql:host=localhost; dbname=procir_nagai127;charset=utf8;', 'nagai127', '2c7vcx1u47');
+				} catch (PDOException $e) {
+				    echo '接続失敗:';
+				    exit;
+				}
+				$sql = "INSERT INTO bookings (booking_number, booking_date, created_at) VALUES (:booking_number, :booking_date, now())";
+				parse_str($postback, $data);
+				$date = $data['date'];	
+				$numberOfPeople = $data['numberOfPeople'];
+				switch ($numberOfPeople):
+					case 1:
+						$stmt = $dbh->prepare($sql);
+						$params = array(':booking_number' => $numberOfPeople, ':booking_date' => $date);	
+						$stmt->execute($params);
+						//名前、メールアドレス、電話番号を挿入
+						break;
+					case 2:
+						$stmt = $dbh->prepare($sql);
+						$params = array(':booking_number' => $numberOfPeople, ':booking_date' => $date);	
+						$stmt->execute($params);
+
+						break;
+					case 3:
+						$stmt = $dbh->prepare($sql);
+						$params = array(':booking_number' => $numberOfPeople, ':booking_date' => $date);	
+						$stmt->execute($params);
+
+						break;
+					case 4:
+						$stmt = $dbh->prepare($sql);
+						$params = array(':booking_number' => $numberOfPeople, ':booking_date' => $date);	
+						$stmt->execute($params);
+
+						break;
+					case 5:
+						//電話してください1
+						break;
+					default:
+						//エラーコード
+						break;
+
+
+
+
 			}
 			break;
 		default:
