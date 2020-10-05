@@ -125,7 +125,7 @@ foreach ($client->parseEvents() as $event) {
 						]
 					]);	
 					break;
-
+			}
 		case 'postback':
 			$postback = $event['postback']['data'];
 			$datetime = $event['postback']['params']['datetime'];
