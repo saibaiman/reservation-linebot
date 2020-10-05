@@ -143,7 +143,7 @@ foreach ($client->parseEvents() as $event) {
 					'messages' => [ 
 						[
 						'type' => 'text',
-						'text' => '位置情報かメッセージしか対応していません。'
+						'text' => $datetime 
 						]
 
 /*						'type' => 'template',
