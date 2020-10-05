@@ -217,9 +217,27 @@ foreach ($client->parseEvents() as $event) {
 
 						break;
 					case 5:
+						$client->replyMessage([
+							'replyToken' => $event['replyToken'],
+							'messages' => [
+								[
+								'type' => 'text',
+								'text' => "五人以上のご予約は直接ご連絡ください\n046-231-7422",
+								]
+							]
+						]);
 						//電話してください1
 						break;
 					default:
+						$client->replyMessage([
+							'replyToken' => $event['replyToken'],
+							'messages' => [
+								[
+								'type' => 'text',
+								'text' => "不正なアクセスです。最初からお願いします。",
+								]
+							]
+						]);
 						//エラーコード
 						break;
 
