@@ -134,7 +134,10 @@ foreach ($client->parseEvents() as $event) {
 					'replyToken' => $event['replyToken'],
 					'messages' => [ 
 						[
-						'type' => 'template',
+						'type' => 'text',
+						'text' => $postback . "\n" . $datetime,
+						]
+						/*'type' => 'template',
 						'altText' => '人数選択',
 							'template' => [
 								'type' => 'buttons',
@@ -167,7 +170,7 @@ foreach ($client->parseEvents() as $event) {
 									)
 								)
 							]
-						]
+						]*/
 					]	
 				]);
 			} elseif ($postback == 'action=back') {
