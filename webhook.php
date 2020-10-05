@@ -191,7 +191,7 @@ foreach ($client->parseEvents() as $event) {
 				parse_str($postback, $data);
 				$date = $data['date'];	
 				$numberOfPeople = $data['numberOfPeople'];
-				switch ($numberOfPeople):
+				switch ($numberOfPeople) {
 					case 1:
 						$stmt = $dbh->prepare($sql);
 						$params = array(':booking_number' => $numberOfPeople, ':booking_date' => $date);	
@@ -240,11 +240,9 @@ foreach ($client->parseEvents() as $event) {
 						]);
 						//エラーコード
 						break;
-
-
-
-
+				}
 			}
+			break;
 		default:
 			error_log('Unsupported event type: ' . $event['type']);
 			break;
