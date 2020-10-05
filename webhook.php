@@ -23,7 +23,7 @@ use Carbon\Carbon;
 
 $channelAccessToken = 'hy0mK6UwxH+2ooPGZpUr9mGknMfgOcRYZPwL7B5b5AMQGWVVdluOSsjveDfPlsu8riTNl45G0mJcpngdQ+oldHdqyVLSa15qR6H0naE+l5q7yf3ETynO7bV0PqmvZzcvg0fJEn5D/UFnkSo/QHv+rQdB04t89/1O/w1cDnyilFU=';
 $channelSecret = 'c5f2a1532069465224d1183ac4256997';
-$postback = null;
+$postback = '';
 
 $client = new LINEBotTiny($channelAccessToken, $channelSecret);
 foreach ($client->parseEvents() as $event) {
@@ -134,10 +134,7 @@ foreach ($client->parseEvents() as $event) {
 					'replyToken' => $event['replyToken'],
 					'messages' => [ 
 						[
-						'type' => 'text',
-						'text' => $postback . "\n" . $datetime,
-						]
-						/*'type' => 'template',
+						'type' => 'template',
 						'altText' => '人数選択',
 							'template' => [
 								'type' => 'buttons',
@@ -167,10 +164,10 @@ foreach ($client->parseEvents() as $event) {
 									'type' => 'postback',
 									'label' => '５人以上',
 									'data' => 'numberOfPeople=5&date=' . $datetime,
-									)
-								)
+									),
+								),
 							]
-						]*/
+						]
 					]	
 				]);
 			} elseif ($postback == 'action=back') {
