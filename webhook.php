@@ -144,26 +144,26 @@ foreach ($client->parseEvents() as $event) {
 									array(	
 									'type' => 'postback',
 									'label' => '１人',
-									'data' => 'numberOfPeople=1' . '&date=' . $datetime,
+									'data' => 'numberOfPeople=1&date=' . $datetime,
 									array(	
 									'type' => 'postback',
 									'label' => '２人',
-									'data' => 'numberOfPeople=2' . '&date=' . $datetime,
+									'data' => 'numberOfPeople=2&date=' . $datetime,
 									),
 									array(	
 									'type' => 'postback',
 									'label' => '３人',
-									'data' => 'numberOfPeople=3' . '&date=' . $datetime,
+									'data' => 'numberOfPeople=3&date=' . $datetime,
 									),
 									array(	
 									'type' => 'postback',
 									'label' => '４人',
-									'data' => 'numberOfPeople=4' . '&date=' . $datetime,
+									'data' => 'numberOfPeople=4&date=' . $datetime,
 									),
 									array(	
 									'type' => 'postback',
 									'label' => '５人以上',
-									'data' => 'numberOfPeople=5' . '&date=' . $datetime,
+									'data' => 'numberOfPeople=5&date=' . $datetime,
 									),
 								),
 							]
