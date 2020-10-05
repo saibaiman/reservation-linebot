@@ -163,7 +163,7 @@ foreach ($client->parseEvents() as $event) {
 									'type' => 'postback',
 									'label' => '５人以上',
 									'data' => 'numberOfPeople=5&date=' . $datetime,
-									),
+									)
 								)
 							]
 						]
