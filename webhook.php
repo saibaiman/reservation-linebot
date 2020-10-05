@@ -175,8 +175,7 @@ foreach ($client->parseEvents() as $event) {
 					'messages' => [
 						[
 						'type' => 'text',
-						//'text' => '何もしませんでした',
-						'text' => $event,
+						'text' => '何もしませんでした',
 						]
 					]
 				]);
