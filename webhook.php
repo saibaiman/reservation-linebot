@@ -177,7 +177,7 @@ foreach ($client->parseEvents() as $event) {
 				]);
 			} else {
 				try {
-				    $dbh = new PDO('mysql:host=localhost; dbname=procir_nagai127;charset=utf8;', 'nagai127', '2c7vcx1u47');
+				    $dbh = new PDO('mysql:host=procir-study.site; dbname=procir_nagai127;charset=utf8;', 'nagai127', '2c7vcx1u47');
 				} catch (PDOException $e) {
 					$client->replyMessage([
 						'replyToken' => $event['replyToken'],
