@@ -312,7 +312,7 @@ foreach ($client->parseEvents() as $event) {
 						]);
 						break;
 				}
-			} elseif (strstr($postback, 'reservation', true))  {
+			} elseif (substr($postback, 0, 11) ===  'reservation')  {
 				parse_str($postback, $data);
 				$date = $data['date'];	
 				$datetime = str_replace('T', '', $date);	
