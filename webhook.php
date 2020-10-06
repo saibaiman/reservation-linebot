@@ -127,13 +127,17 @@ foreach ($client->parseEvents() as $event) {
 			}
 		case 'postback':
 			$postback = null;
-			$postback = $event['postback']['type'];
+			$postback = $event['postback']['data'];
 			$datetime = $event['postback']['params']['datetime'];
-			if ($postback == 'datetimepicker') {
+			if ($postback == 'datestring') {
 				$client->replyMessage([
 					'replyToken' => $event['replyToken'],
 					'messages' => [ 
-						'type' => 'template',
+						[
+						'type' => 'text',
+						'text' => '位置情報かメッセージしか対応していません。'
+						]
+						/*'type' => 'template',
 						'altText' => '人数選択',
 						'template' => [
 							'type' => 'buttons',
@@ -165,7 +169,7 @@ foreach ($client->parseEvents() as $event) {
 								'data' => 'numberOfPeople=5&date=' . $datetime,
 								),
 							),
-						]
+						]*/
 					]	
 				]);
 			} elseif ($postback == 'action=back') {
