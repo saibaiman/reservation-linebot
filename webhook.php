@@ -176,7 +176,7 @@ foreach ($client->parseEvents() as $event) {
 					]
 				]);
 			} else {
-				try {
+				/*try {
 				    $dbh = new PDO('mysql:host=localhost; dbname=procir_nagai127;charset=utf8;', 'nagai127', '2c7vcx1u47');
 				} catch (PDOException $e) {
 					$client->replyMessage([
@@ -191,23 +191,39 @@ foreach ($client->parseEvents() as $event) {
 				        exit;
 				}
 				$sql = "INSERT INTO bookings (booking_number, booking_date, created_at) VALUES (:booking_number, :booking_date, now())";
-				parse_str($postback, $data);
+				*/parse_str($postback, $data);
 				$date = $data['date'];	
 				$numberOfPeople = $data['numberOfPeople'];
 				switch ($numberOfPeople) {
 					case 1:
-						$stmt = $dbh->prepare($sql);
-						$params = array(':booking_number' => $numberOfPeople, ':booking_date' => $date);	
-						$stmt->execute($params);
 						$client->replyMessage([
 							'replyToken' => $event['replyToken'],
 							'messages' => [
 								[
-								'type' => 'text',
-								'text' => '1名様でのご予約完了しました。',
+								'type' => 'template',
+								'altText' => '予約確認中',
+								'template' => [
+									[
+									'type' => 'confirm',
+									'text' => $date->format('Y年m月d日　H時i分') . 'から' . $numberOfPeople . '人様のご予約でよろしいでしょうか。',
+									'actions' => [
+										[
+										'type' => 'message',
+										'label' => 'はい',
+										'text' => '予約が完了しました',
+										],
+										[
+										'type' => 'message',
+										'label' => 'いいえ',
+										'text' => '予約が完了しました',
+										]
+									]
 								]
 							]
 						]);
+						$stmt = $dbh->prepare($sql);
+						$params = array(':booking_number' => $numberOfPeople, ':booking_date' => $date);	
+						$stmt->execute($params);
 						//名前、メールアドレス、電話番号を挿入
 						break;
 					case 2:
