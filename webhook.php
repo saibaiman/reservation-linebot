@@ -193,6 +193,8 @@ foreach ($client->parseEvents() as $event) {
 				$sql = "INSERT INTO bookings (booking_number, booking_date, created_at) VALUES (:booking_number, :booking_date, now())";
 				*/parse_str($postback, $data);
 				$date = $data['date'];	
+				$datetime = str_replace('T', '', $date);	
+				$datetimeFormat = Carbon::phase($datetime)->format('Y年m月d日　H時i分');	
 				$numberOfPeople = $data['numberOfPeople'];
 				switch ($numberOfPeople) {
 					case 1:
@@ -204,7 +206,7 @@ foreach ($client->parseEvents() as $event) {
 								'altText' => '予約確認中',
 									'template' => [
 										'type' => 'confirm',
-										'text' => $date->format('Y年m月d日　H時i分') . 'から' . $numberOfPeople . '人様のご予約でよろしいでしょうか。',
+										'text' => $datetimeFormat . 'から' . $numberOfPeople . '人様のご予約でよろしいでしょうか。',
 										'actions' => array( 
 											array(	
 											'type' => 'message',
