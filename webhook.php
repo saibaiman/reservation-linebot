@@ -127,12 +127,13 @@ foreach ($client->parseEvents() as $event) {
 			}
 		case 'postback':
 			$postback = null;
-			$postback = $event['postback']['data'];
+			$postback = $event['postback']['type'];
 			$datetime = $event['postback']['params']['datetime'];
-			if ($postback == 'datestring') {
+			if ($postback == 'datetimepicker') {
 				$client->replyMessage([
 					'replyToken' => $event['replyToken'],
 					'messages' => [ 
+						[
 						'type' => 'template',
 						'altText' => '人数選択',
 						'template' => [
