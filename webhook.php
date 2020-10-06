@@ -179,8 +179,16 @@ foreach ($client->parseEvents() as $event) {
 				try {
 				    $dbh = new PDO('mysql:host=localhost; dbname=procir_nagai127;charset=utf8;', 'nagai127', '2c7vcx1u47');
 				} catch (PDOException $e) {
-				    echo '接続失敗:';
-				    exit;
+					$client->replyMessage([
+						'replyToken' => $event['replyToken'],
+						'messages' => [
+							[
+							'type' => 'text',
+							'text' => 'データベースとの接続に失敗しました。',
+							]
+						]
+					]);
+				        exit;
 				}
 				$sql = "INSERT INTO bookings (booking_number, booking_date, created_at) VALUES (:booking_number, :booking_date, now())";
 				parse_str($postback, $data);
