@@ -191,6 +191,15 @@ foreach ($client->parseEvents() as $event) {
 						$stmt = $dbh->prepare($sql);
 						$params = array(':booking_number' => $numberOfPeople, ':booking_date' => $date);	
 						$stmt->execute($params);
+						$client->replyMessage([
+							'replyToken' => $event['replyToken'],
+							'messages' => [
+								[
+								'type' => 'text',
+								'text' => '1名様でのご予約完了しました。',
+								]
+							]
+						]);
 						//名前、メールアドレス、電話番号を挿入
 						break;
 					case 2:
@@ -224,15 +233,6 @@ foreach ($client->parseEvents() as $event) {
 						//エラーコード
 						break;
 				}
-				$client->replyMessage([
-					'replyToken' => $event['replyToken'],
-					'messages' => [
-						[
-						'type' => 'text',
-						'text' => 'ご予約完了しました。',
-						]
-					]
-				]);
 			}
 			break;
 		default:
