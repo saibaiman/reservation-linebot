@@ -214,7 +214,6 @@ foreach ($client->parseEvents() as $event) {
 						$stmt = $dbh->prepare($sql);
 						$params = array(':booking_number' => $numberOfPeople, ':booking_date' => $date);	
 						$stmt->execute($params);
-
 						break;
 					case 3:
 						$stmt = $dbh->prepare($sql);
