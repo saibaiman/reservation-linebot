@@ -191,32 +191,31 @@ foreach ($client->parseEvents() as $event) {
 				$datetime = str_replace('T', '', $date);	
 				$datetimeFormat = Carbon::parse($datetime)->format('Y年m月d日　H時i分');	
 				$numberOfPeople = $data['numberOfPeople'];
-					$client->replyMessage([
-						'replyToken' => $event['replyToken'],
-						'messages' => [
-							[
-							'type' => 'template',
-							'altText' => '予約確認中',
-								'template' => [
-									'type' => 'confirm',
-									'text' => $datetimeFormat . 'から' . $numberOfPeople . '人様のご予約でよろしいでしょうか。',
-									'actions' => array( 
-										array(	
-										'type' => 'postback',
-										'label' => 'はい',
-										'data' => 'reservation&confirmNumberOfPeople=' . $numberOfPeople . '&confirmDatetime=' . $datetimeFormat,
-										),
-										array(
-										'type' => 'postback',
-										'label' => 'いいえ',
-										'data' => 'action=first',
-										)
+				$client->replyMessage([
+					'replyToken' => $event['replyToken'],
+					'messages' => [
+						[
+						'type' => 'template',
+						'altText' => '予約確認中',
+							'template' => [
+								'type' => 'confirm',
+								'text' => $datetimeFormat . 'から' . $numberOfPeople . '人様のご予約でよろしいでしょうか。',
+								'actions' => array( 
+									array(	
+									'type' => 'postback',
+									'label' => 'はい',
+									'data' => 'reservation&confirmNumberOfPeople=' . $numberOfPeople . '&confirmDatetime=' . $datetimeFormat,
+									),
+									array(
+									'type' => 'postback',
+									'label' => 'いいえ',
+									'data' => 'action=first',
 									)
-								]
+								)
 							]
 						]
-					]);
-				}
+					]
+				]);
 			} elseif (substr($postback, 0, 11) ===  'reservation')  {
 				parse_str($postback, $data);
 				$date = $data['date'];	
