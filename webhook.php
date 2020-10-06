@@ -127,49 +127,47 @@ foreach ($client->parseEvents() as $event) {
 			}
 		case 'postback':
 			$postback = null;
-			$postback = $event['type']['data'];
-			$datetime = $event['type']['params']['datetime'];
+			$postback = $event['postback']['data'];
+			$datetime = $event['postback']['params']['datetime'];
 			if ($postback == 'datestring') {
 				$client->replyMessage([
 					'replyToken' => $event['replyToken'],
 					'messages' => [ 
 						[
-						'type' => 'text',
-						'text' => '位置情報かメッセージしか対応していません。'
-						]
-						/*'type' => 'template',
+						'type' => 'template',
 						'altText' => '人数選択',
-						'template' => [
-							'type' => 'buttons',
-							'text' => '人数を選択してください',
-							'actions' => array(
-								array(	
-								'type' => 'postback',
-								'label' => '１人',
-								'data' => 'numberOfPeople=1&date=' . $datetime,
+							'template' => [
+								'type' => 'buttons',
+								'text' => '人数を選択してください',
+								'actions' => array(
+									array(	
+									'type' => 'postback',
+									'label' => '１人',
+									'data' => 'numberOfPeople=1&date=' . $datetime,
+									),
+									array(	
+									'type' => 'postback',
+									'label' => '２人',
+									'data' => 'numberOfPeople=2&date=' . $datetime,
+									),
+									array(	
+									'type' => 'postback',
+									'label' => '３人',
+									'data' => 'numberOfPeople=3&date=' . $datetime,
+									),
+									array(	
+									'type' => 'postback',
+									'label' => '４人',
+									'data' => 'numberOfPeople=4&date=' . $datetime,
+									),
+									array(	
+									'type' => 'postback',
+									'label' => '５人以上',
+									'data' => 'numberOfPeople=5&date=' . $datetime,
+									),
 								),
-								array(	
-								'type' => 'postback',
-								'label' => '２人',
-								'data' => 'numberOfPeople=2&date=' . $datetime,
-								),
-								array(	
-								'type' => 'postback',
-								'label' => '３人',
-								'data' => 'numberOfPeople=3&date=' . $datetime,
-								),
-								array(	
-								'type' => 'postback',
-								'label' => '４人',
-								'data' => 'numberOfPeople=4&date=' . $datetime,
-								),
-								array(	
-								'type' => 'postback',
-								'label' => '５人以上',
-								'data' => 'numberOfPeople=5&date=' . $datetime,
-								),
-							),
-						]*/
+							]
+						]
 					]	
 				]);
 			} elseif ($postback == 'action=back') {
