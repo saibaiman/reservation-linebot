@@ -138,7 +138,7 @@ foreach ($client->parseEvents() as $event) {
 						'altText' => '人数選択',
 							'template' => [
 								'type' => 'buttons',
-								'text' => "人数を選択してください\n5人以上のご予約は直接お電話にてお願いします。",
+								'text' => "人数を選択してください\n(*5人以上のご予約は直接お電話にてお願いします。)",
 								'actions' => array(
 									array(	
 									'type' => 'postback',
@@ -236,6 +236,15 @@ foreach ($client->parseEvents() as $event) {
 						//エラーコード
 						break;
 				}
+				$client->replyMessage([
+					'replyToken' => $event['replyToken'],
+					'messages' => [
+						[
+						'type' => 'text',
+						'text' => 'ご予約完了しました。',
+						]
+					]
+				]);
 			}
 			break;
 		default:
