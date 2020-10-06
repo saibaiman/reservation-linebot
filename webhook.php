@@ -175,23 +175,18 @@ foreach ($client->parseEvents() as $event) {
 						]
 					]
 				]);
-			} else {
-				/*try {
-				    $dbh = new PDO('mysql:host=localhost; dbname=procir_nagai127;charset=utf8;', 'nagai127', '2c7vcx1u47');
-				} catch (PDOException $e) {
-					$client->replyMessage([
-						'replyToken' => $event['replyToken'],
-						'messages' => [
-							[
-							'type' => 'text',
-							'text' => 'データベースとの接続に失敗しました。',
-							]
+			} elseif ($postback == 'action=first') {
+				$client->replyMessage([
+					'replyToken' => $event['replyToken'],
+					'messages' => [
+						[
+						'type' => 'text',
+						'text' => '予約を取りやめました。',
 						]
-					]);
-				        exit;
-				}
-				$sql = "INSERT INTO bookings (booking_number, booking_date, created_at) VALUES (:booking_number, :booking_date, now())";
-				*/parse_str($postback, $data);
+					]
+				]);
+			} elseif (strstr($postback, 'numberOfPeople', true))  {
+				parse_str($postback, $data);
 				$date = $data['date'];	
 				$datetime = str_replace('T', '', $date);	
 				$datetimeFormat = Carbon::parse($datetime)->format('Y年m月d日　H時i分');	
@@ -209,41 +204,101 @@ foreach ($client->parseEvents() as $event) {
 										'text' => $datetimeFormat . 'から' . $numberOfPeople . '人様のご予約でよろしいでしょうか。',
 										'actions' => array( 
 											array(	
-											'type' => 'message',
+											'type' => 'postback',
 											'label' => 'はい',
-											'text' => '予約が完了しました',
+											'data' => 'reservation&confirmNumberOfPeople=' . $numberOfPeople . '&confirmDatetime=' . $datetimeFormat,
 											),
 											array(
-											'type' => 'message',
+											'type' => 'postback',
 											'label' => 'いいえ',
-											'text' => '予約が完了しました',
+											'data' => 'action=first',
 											)
 										)
 									]
 								]
 							]
 						]);
-						$stmt = $dbh->prepare($sql);
-						$params = array(':booking_number' => $numberOfPeople, ':booking_date' => $date);	
-						$stmt->execute($params);
-						//名前、メールアドレス、電話番号を挿入
 						break;
 					case 2:
-						$stmt = $dbh->prepare($sql);
-						$params = array(':booking_number' => $numberOfPeople, ':booking_date' => $date);	
-						$stmt->execute($params);
+						$client->replyMessage([
+							'replyToken' => $event['replyToken'],
+							'messages' => [
+								[
+								'type' => 'template',
+								'altText' => '予約確認中',
+									'template' => [
+										'type' => 'confirm',
+										'text' => $datetimeFormat . 'から' . $numberOfPeople . '人様のご予約でよろしいでしょうか。',
+										'actions' => array( 
+											array(	
+											'type' => 'postback',
+											'label' => 'はい',
+											'data' => 'reservation&confirmNumberOfPeople=' . $numberOfPeople . '&confirmDatetime=' . $datetimeFormat,
+											),
+											array(
+											'type' => 'postback',
+											'label' => 'いいえ',
+											'data' => 'action=first',
+											)
+										)
+									]
+								]
+							]
+						]);
 						break;
 					case 3:
-						$stmt = $dbh->prepare($sql);
-						$params = array(':booking_number' => $numberOfPeople, ':booking_date' => $date);	
-						$stmt->execute($params);
-
+						$client->replyMessage([
+							'replyToken' => $event['replyToken'],
+							'messages' => [
+								[
+								'type' => 'template',
+								'altText' => '予約確認中',
+									'template' => [
+										'type' => 'confirm',
+										'text' => $datetimeFormat . 'から' . $numberOfPeople . '人様のご予約でよろしいでしょうか。',
+										'actions' => array( 
+											array(	
+											'type' => 'postback',
+											'label' => 'はい',
+											'data' => 'reservation&confirmNumberOfPeople=' . $numberOfPeople . '&confirmDatetime=' . $datetimeFormat,
+											),
+											array(
+											'type' => 'postback',
+											'label' => 'いいえ',
+											'data' => 'action=first',
+											)
+										)
+									]
+								]
+							]
+						]);
 						break;
 					case 4:
-						$stmt = $dbh->prepare($sql);
-						$params = array(':booking_number' => $numberOfPeople, ':booking_date' => $date);	
-						$stmt->execute($params);
-
+						$client->replyMessage([
+							'replyToken' => $event['replyToken'],
+							'messages' => [
+								[
+								'type' => 'template',
+								'altText' => '予約確認中',
+									'template' => [
+										'type' => 'confirm',
+										'text' => $datetimeFormat . 'から' . $numberOfPeople . '人様のご予約でよろしいでしょうか。',
+										'actions' => array( 
+											array(	
+											'type' => 'postback',
+											'label' => 'はい',
+											'data' => 'reservation&confirmNumberOfPeople=' . $numberOfPeople . '&confirmDatetime=' . $datetimeFormat,
+											),
+											array(
+											'type' => 'postback',
+											'label' => 'いいえ',
+											'data' => 'action=first',
+											)
+										)
+									]
+								]
+							]
+						]);
 						break;
 					default:
 						$client->replyMessage([
@@ -255,9 +310,45 @@ foreach ($client->parseEvents() as $event) {
 								]
 							]
 						]);
-						//エラーコード
 						break;
 				}
+			} elseif (strstr($postback, 'reservation', true))  {
+				parse_str($postback, $data);
+				$date = $data['date'];	
+				$datetime = str_replace('T', '', $date);	
+				$numberOfPeople = $data['numberOfPeople'];
+				try {
+				    $dbh = new PDO('mysql:host=localhost; dbname=procir_nagai127;charset=utf8;', 'nagai127', '2c7vcx1u47');
+				} catch (PDOException $e) {
+					$client->replyMessage([
+						'replyToken' => $event['replyToken'],
+						'messages' => [
+							[
+							'type' => 'text',
+							'text' => 'データベースとの接続に失敗しました。',
+							]
+						]
+					]);
+				        exit;
+				}
+				$sql = "INSERT INTO bookings (booking_number, booking_date, created_at) VALUES (:booking_number, :booking_date, now())";
+				$stmt = $dbh->prepare($sql);
+				$params = array(':booking_number' => $numberOfPeople, ':booking_date' => $date);	
+				$stmt->execute($params);
+				$client->replyMessage([
+					'replyToken' => $event['replyToken'],
+					'messages' => [
+						[
+						'type' => 'text',
+						'text' => '予約完了しました',
+						]
+					]
+				]);
+
+
+
+
+
 			}
 			break;
 		default:
