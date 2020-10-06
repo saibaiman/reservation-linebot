@@ -194,7 +194,7 @@ foreach ($client->parseEvents() as $event) {
 				*/parse_str($postback, $data);
 				$date = $data['date'];	
 				$datetime = str_replace('T', '', $date);	
-				$datetimeFormat = Carbon::phase($datetime)->format('Y年m月d日　H時i分');	
+				$datetimeFormat = Carbon::parse($datetime)->format('Y年m月d日　H時i分');	
 				$numberOfPeople = $data['numberOfPeople'];
 				switch ($numberOfPeople) {
 					case 1:
