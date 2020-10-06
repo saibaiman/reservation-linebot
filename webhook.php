@@ -132,7 +132,7 @@ foreach ($client->parseEvents() as $event) {
 			$timeFormat = Carbon::parse($datetimeFormat)->format('H:i');	
 			$startTime = '18:00';
 			$endTime = '23:00';
-			if  ($timeFormat < $startTime || $timeFormat > $endTIme) {
+			if  ($timeFormat < $startTime || $timeFormat > $endTime) {
 				$client->replyMessage([
 					'replyToken' => $event['replyToken'],
 					'messages' => [
