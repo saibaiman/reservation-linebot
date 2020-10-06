@@ -185,7 +185,7 @@ foreach ($client->parseEvents() as $event) {
 						]
 					]
 				]);
-			} elseif (substr($postback, 0, 13 ) === 'numberOfPeople')  {
+			} elseif (substr($postback, 0, 13) === 'numberOfPeople')  {
 				parse_str($postback, $data);
 				$date = $data['date'];	
 				$datetime = str_replace('T', '', $date);	
@@ -345,6 +345,16 @@ foreach ($client->parseEvents() as $event) {
 					]
 				]);
 
+			} else {
+				$client->replyMessage([
+					'replyToken' => $event['replyToken'],
+					'messages' => [
+						[
+						'type' => 'text',
+						'text' => '条件分岐間違ってね？',
+						]
+					]
+				]);
 			}
 			break;
 		default:
