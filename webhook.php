@@ -65,7 +65,7 @@ foreach ($client->parseEvents() as $event) {
 								"altText" => "予約されますか？",
 									"template" => [ 
 										"type" => "confirm",
-										"text" => "予約しますか? \n (1か月先までご予約できます。)",
+										"text" => "予約しますか?\n予約する場合は18時～23時の間を選択してください \n (1か月先までご予約できます。)",
 										"actions" => [
 											[	
 											"type" => "datetimepicker",
@@ -126,9 +126,25 @@ foreach ($client->parseEvents() as $event) {
 					break;
 			}
 		case 'postback':
-			$postback = null;
 			$postback = $event['postback']['data'];
 			$datetime = $event['postback']['params']['datetime'];
+			$datetimeFormat = str_replace('T', '', $datetime);	
+			$timeFormat = Carbon::parse($datetimeFormat)->format('H:i');	
+			$startTime = 18:00;
+			$endTime = 23:00;
+			if  ($timeFormat <= $startTime || $timeFormat >= $endTIme) {
+				$client->replyMessage([
+					'replyToken' => $event['replyToken'],
+					'messages' => [
+						[
+						'type' => 'text',
+						'text' => '18時から23時までの間に設定してください'
+						]
+					]
+				]);	
+
+			}
+
 			if ($postback == 'datestring') {
 				$client->replyMessage([
 					'replyToken' => $event['replyToken'],
