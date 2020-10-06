@@ -202,20 +202,21 @@ foreach ($client->parseEvents() as $event) {
 								[
 								'type' => 'template',
 								'altText' => '予約確認中',
-								'template' => [
-									[
-									'type' => 'confirm',
-									'text' => $date->format('Y年m月d日　H時i分') . 'から' . $numberOfPeople . '人様のご予約でよろしいでしょうか。',
-									'actions' => [
+									'template' => [
 										[
-										'type' => 'message',
-										'label' => 'はい',
-										'text' => '予約が完了しました',
-										],
-										[
-										'type' => 'message',
-										'label' => 'いいえ',
-										'text' => '予約が完了しました',
+										'type' => 'confirm',
+										'text' => $date->format('Y年m月d日　H時i分') . 'から' . $numberOfPeople . '人様のご予約でよろしいでしょうか。',
+										'actions' => [
+											[
+											'type' => 'message',
+											'label' => 'はい',
+											'text' => '予約が完了しました',
+											],
+											[
+											'type' => 'message',
+											'label' => 'いいえ',
+											'text' => '予約が完了しました',
+											]
 										]
 									]
 								]
