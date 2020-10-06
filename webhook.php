@@ -92,7 +92,7 @@ foreach ($client->parseEvents() as $event) {
 							'messages' => [
 								[
 								'type' => 'text',
-								'text' => $event['source']['userId'}, 
+								'text' => $event['source']['userId'], 
 								]
 							]	
 						]);
