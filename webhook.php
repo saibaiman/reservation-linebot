@@ -127,8 +127,8 @@ foreach ($client->parseEvents() as $event) {
 			}
 		case 'postback':
 			$postback = null;
-			$postback = $event['postback']['data'];
-			$datetime = $event['postback']['params']['datetime'];
+			$postback = $event['type']['data'];
+			$datetime = $event['type']['params']['datetime'];
 			if ($postback == 'datestring') {
 				$client->replyMessage([
 					'replyToken' => $event['replyToken'],
