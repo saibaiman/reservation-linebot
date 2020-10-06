@@ -130,8 +130,8 @@ foreach ($client->parseEvents() as $event) {
 			$datetime = $event['postback']['params']['datetime'];
 			$datetimeFormat = str_replace('T', '', $datetime);	
 			$timeFormat = Carbon::parse($datetimeFormat)->format('H:i');	
-			$startTime = 18:00;
-			$endTime = 23:00;
+			$startTime = '18:00';
+			$endTime = '23:00';
 			if  ($timeFormat <= $startTime || $timeFormat >= $endTIme) {
 				$client->replyMessage([
 					'replyToken' => $event['replyToken'],
