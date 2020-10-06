@@ -351,7 +351,7 @@ foreach ($client->parseEvents() as $event) {
 					'messages' => [
 						[
 						'type' => 'text',
-						'text' => '条件分岐間違ってね？',
+						'text' => $postback . "\n条件分岐間違ってね？",
 						]
 					]
 				]);
