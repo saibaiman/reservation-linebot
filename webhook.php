@@ -128,24 +128,23 @@ foreach ($client->parseEvents() as $event) {
 		case 'postback':
 			$postback = $event['postback']['data'];
 			$datetime = $event['postback']['params']['datetime'];
-			$datetimeFormat = str_replace('T', '', $datetime);	
-			$timeFormat = Carbon::parse($datetimeFormat)->format('H:i');	
-			$startTime = '18:00';
-			$endTime = '23:00';
-			if  ($timeFormat < $startTime || $timeFormat > $endTime) {
-				$client->replyMessage([
-					'replyToken' => $event['replyToken'],
-					'messages' => [
-						[
-						'type' => 'text',
-						'text' => '18時から23時までの間に設定してください'
-						]
-					]
-				]);	
-
-			}
 
 			if ($postback == 'datestring') {
+				$datetimeFormat = str_replace('T', '', $datetime);	
+				$timeFormat = Carbon::parse($datetimeFormat)->format('H:i');	
+				$startTime = '18:00';
+				$endTime = '23:00';
+				if  ($timeFormat < $startTime || $timeFormat > $endTime) {
+					$client->replyMessage([
+						'replyToken' => $event['replyToken'],
+						'messages' => [
+							[
+							'type' => 'text',
+							'text' => '18時から23時までの間に設定してください'
+							]
+						]
+					]);	
+				}
 				$client->replyMessage([
 					'replyToken' => $event['replyToken'],
 					'messages' => [ 
