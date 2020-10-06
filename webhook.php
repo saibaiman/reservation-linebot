@@ -185,7 +185,7 @@ foreach ($client->parseEvents() as $event) {
 						]
 					]
 				]);
-			} elseif (strstr($postback, 'numberOfPeople', true))  {
+			} elseif (substr($postback, 0, 13 ) === 'numberOfPeople')  {
 				parse_str($postback, $data);
 				$date = $data['date'];	
 				$datetime = str_replace('T', '', $date);	
@@ -344,10 +344,6 @@ foreach ($client->parseEvents() as $event) {
 						]
 					]
 				]);
-
-
-
-
 
 			}
 			break;
