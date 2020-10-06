@@ -133,33 +133,35 @@ foreach ($client->parseEvents() as $event) {
 				$client->replyMessage([
 					'replyToken' => $event['replyToken'],
 					'messages' => [ 
+						[
 						'type' => 'template',
 						'altText' => '人数選択',
-						'template' => [
-							'type' => 'buttons',
-							'text' => "人数を選択してください\n5人以上のご予約は直接お電話にてお願いします。",
-							'actions' => array(
-								array(	
-								'type' => 'postback',
-								'label' => '１人',
-								'data' => 'numberOfPeople=1&date=' . $datetime,
+							'template' => [
+								'type' => 'buttons',
+								'text' => "人数を選択してください\n5人以上のご予約は直接お電話にてお願いします。",
+								'actions' => array(
+									array(	
+									'type' => 'postback',
+									'label' => '１人',
+									'data' => 'numberOfPeople=1&date=' . $datetime,
+									),
+									array(	
+									'type' => 'postback',
+									'label' => '２人',
+									'data' => 'numberOfPeople=2&date=' . $datetime,
+									),
+									array(	
+									'type' => 'postback',
+									'label' => '３人',
+									'data' => 'numberOfPeople=3&date=' . $datetime,
+									),
+									array(	
+									'type' => 'postback',
+									'label' => '４人',
+									'data' => 'numberOfPeople=4&date=' . $datetime,
+									),
 								),
-								array(	
-								'type' => 'postback',
-								'label' => '２人',
-								'data' => 'numberOfPeople=2&date=' . $datetime,
-								),
-								array(	
-								'type' => 'postback',
-								'label' => '３人',
-								'data' => 'numberOfPeople=3&date=' . $datetime,
-								),
-								array(	
-								'type' => 'postback',
-								'label' => '４人',
-								'data' => 'numberOfPeople=4&date=' . $datetime,
-								),
-							),
+							]
 						]
 					]	
 				]);
