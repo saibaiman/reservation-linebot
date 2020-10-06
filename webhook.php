@@ -127,8 +127,8 @@ foreach ($client->parseEvents() as $event) {
 			}
 		case 'postback':
 			$postback = null;
-			$postback = $event[0]['postback']['data'];
-			$datetime = $event[0]['postback']['params']['datetime'];
+			$postback = $event['postback']['data'];
+			$datetime = $event['postback']['params']['datetime'];
 			if ($postback == 'datestring') {
 				$client->replyMessage([
 					'replyToken' => $event['replyToken'],
@@ -210,18 +210,6 @@ foreach ($client->parseEvents() as $event) {
 						$params = array(':booking_number' => $numberOfPeople, ':booking_date' => $date);	
 						$stmt->execute($params);
 
-						break;
-					case 5:
-						$client->replyMessage([
-							'replyToken' => $event['replyToken'],
-							'messages' => [
-								[
-								'type' => 'text',
-								'text' => "五人以上のご予約は直接ご連絡ください\n046-231-7422",
-								]
-							]
-						]);
-						//電話してください1
 						break;
 					default:
 						$client->replyMessage([
