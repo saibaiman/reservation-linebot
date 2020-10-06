@@ -128,7 +128,7 @@ class LINEBotTiny
 	));
 	$response = curl_exec($ch);
 	curl_close($ch);       
-        return $recponse;
+        return $response;
     }
 
     private function sign($body)
