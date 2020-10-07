@@ -237,6 +237,21 @@ foreach ($client->parseEvents() as $event) {
 				$date = $data['date'];	
 				$datetime = str_replace('T', '', $date);	
 				$numberOfPeople = $data['numberOfPeople'];
+				$user = $client->getUserProfile($event['source']['userId']);	
+				$userProfile = json_decode($user, true);
+				
+				if ($numberOfPeople && $datetime && $userProfile['displayName'] && $userProfile['userId']) {
+					$client->replyMessage([
+						'replyToken' => $event['replyToken'],
+						'messages' => [
+							[
+							'type' => 'text',
+							'text' => 'データは入ってるよ',
+							]
+						]
+					]);
+				}
+
 				try {
 				    $dbh = new PDO('mysql:host=localhost; dbname=procir_nagai127;charset=utf8;', 'nagai127', '2c7vcx1u47');
 				} catch (PDOException $e) {
@@ -251,8 +266,6 @@ foreach ($client->parseEvents() as $event) {
 					]);
 				        exit;
 				}
-				$user = $client->getUserProfile($event['source']['userId']);	
-				$userProfile = json_decode($user, true);
 				$sql = "INSERT INTO bookings (name, line_id, booking_number, booking_date, created_at) VALUES (:name, :line_id, :booking_number, :booking_date, now())";
 				$stmt = $dbh->prepare($sql);
 				$params = array(':name' => $userProfile['displayName'], ':line_id' => $userProfile['userId'], ':booking_number' => $numberOfPeople, ':booking_date' => $date);	
