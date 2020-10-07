@@ -251,9 +251,11 @@ foreach ($client->parseEvents() as $event) {
 					]);
 				        exit;
 				}
-				$sql = "INSERT INTO bookings (booking_number, booking_date, created_at) VALUES (:booking_number, :booking_date, now())";
+				$user = $client->getUserProfile($event['source']['userId']);	
+				$userProfile = json_decode($user, true);
+				$sql = "INSERT INTO bookings (name, line_id, booking_number, booking_date, created_at) VALUES (:name, :line_id, :booking_number, :booking_date, now())";
 				$stmt = $dbh->prepare($sql);
-				$params = array(':booking_number' => $numberOfPeople, ':booking_date' => $date);	
+				$params = array(':name' => $userProfile['displayName'], ':line_id' => $userProfile['userId'], ':booking_number' => $numberOfPeople, ':booking_date' => $date);	
 				$stmt->execute($params);
 				$client->replyMessage([
 					'replyToken' => $event['replyToken'],
