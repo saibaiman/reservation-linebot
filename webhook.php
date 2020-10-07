@@ -94,25 +94,11 @@ foreach ($client->parseEvents() as $event) {
 							'messages' => [
 								[
 								'type' => 'text',
-								'text' => $userProfile['displayName'] . "\n" . $userProfile['userId'] 
+								'text' => 'メニューボタンから操作してください。' 
 								]
 							]	
 						]);
 					}
-					break;
-				case 'location':
-					$client->replyMessage([
-						'replyToken' => $event['replyToken'],
-						'messages' => [
-							[
-							'type' => 'location',
-							'title' => 'ポエム',
-							'address' => '神奈川県海老名市東柏ケ谷２丁目２４−３０',
-							'latitude' => 35.471467,
-							'longitude' => 139.426090,
-							]
-						]
-					]);
 					break;
 				default:
 					$client->replyMessage([
@@ -120,7 +106,7 @@ foreach ($client->parseEvents() as $event) {
 						'messages' => [
 							[
 							'type' => 'text',
-							'text' => '位置情報かメッセージしか対応していません。'
+							'text' => 'menuボタンからの操作しか対応していません。'
 							]
 						]
 					]);	
