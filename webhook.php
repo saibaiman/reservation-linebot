@@ -239,18 +239,15 @@ foreach ($client->parseEvents() as $event) {
 				$numberOfPeople = $data['numberOfPeople'];
 				$user = $client->getUserProfile($event['source']['userId']);	
 				$userProfile = json_decode($user, true);
-				
-				if ($numberOfPeople && $datetime && $userProfile['displayName'] && $userProfile['userId']) {
-					$client->replyMessage([
-						'replyToken' => $event['replyToken'],
-						'messages' => [
-							[
-							'type' => 'text',
-							'text' => 'データは入ってるよ',
-							]
+				$client->replyMessage([
+					'replyToken' => $event['replyToken'],
+					'messages' => [
+						[
+						'type' => 'text',
+						'text' => $numberOfPeople . "\n" . $datetime . "\n" . $userProfile['displayName'] . "\n" . $userProfile['userId'],
 						]
-					]);
-				}
+					]
+				]);
 
 				try {
 				    $dbh = new PDO('mysql:host=localhost; dbname=procir_nagai127;charset=utf8;', 'nagai127', '2c7vcx1u47');
