@@ -239,7 +239,7 @@ foreach ($client->parseEvents() as $event) {
 				$numberOfPeople = $data['confirmNumberOfPeople'];
 				$user = $client->getUserProfile($event['source']['userId']);	
 				$userProfile = json_decode($user, true);
-				$client->replyMessage([
+				/*$client->replyMessage([
 					'replyToken' => $event['replyToken'],
 					'messages' => [
 						[
@@ -248,7 +248,7 @@ foreach ($client->parseEvents() as $event) {
 						]
 					]
 				]);
-
+*/
 				try {
 				    $dbh = new PDO('mysql:host=localhost; dbname=procir_nagai127;charset=utf8;', 'nagai127', '2c7vcx1u47');
 				} catch (PDOException $e) {
@@ -272,7 +272,7 @@ foreach ($client->parseEvents() as $event) {
 					'messages' => [
 						[
 						'type' => 'text',
-						'text' => '予約完了しました',
+						'text' => "予約が完了いたしました。\nお待ちしております。",
 						]
 					]
 				]);
