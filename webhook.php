@@ -88,12 +88,13 @@ foreach ($client->parseEvents() as $event) {
 						]);
 					} else {
 						$user = $client->getUserProfile($event['source']['userId']);	
+						$userProfile = json_decode($user, true);
 						$client->replyMessage([
 							'replyToken' => $event['replyToken'],
 							'messages' => [
 								[
 								'type' => 'text',
-								'text' => $user['displayName'] 
+								'text' => $userProfile['displayName'] 
 								]
 							]	
 						]);
