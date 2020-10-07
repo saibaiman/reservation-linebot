@@ -94,7 +94,7 @@ foreach ($client->parseEvents() as $event) {
 							'messages' => [
 								[
 								'type' => 'text',
-								'text' => $userProfile['displayName'] 
+								'text' => $userProfile['displayName'] . "\n" . $userProfile['userId'] 
 								]
 							]	
 						]);
