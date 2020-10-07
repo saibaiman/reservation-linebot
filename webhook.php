@@ -220,7 +220,7 @@ foreach ($client->parseEvents() as $event) {
 									array(	
 									'type' => 'postback',
 									'label' => 'はい',
-									'data' => 'reservation&confirmNumberOfPeople=' . $numberOfPeople . '&confirmDatetime=' . $datetime,
+									'data' => 'reservation&confirmNumberOfPeople=' . $numberOfPeople . '&confirmDatetime=' . $date,
 									),
 									array(
 									'type' => 'postback',
