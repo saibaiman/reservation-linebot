@@ -234,9 +234,9 @@ foreach ($client->parseEvents() as $event) {
 				]);
 			} elseif (substr($postback, 0, 11) ===  'reservation')  {
 				parse_str($postback, $data);
-				$date = $data['date'];	
+				$date = $data['confirmDatetime'];	
 				$datetime = str_replace('T', '', $date);	
-				$numberOfPeople = $data['numberOfPeople'];
+				$numberOfPeople = $data['confirmNumberOfPeople'];
 				$user = $client->getUserProfile($event['source']['userId']);	
 				$userProfile = json_decode($user, true);
 				$client->replyMessage([
